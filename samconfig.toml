@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "spring-boot-dynamolambda"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-vw4l3z8sc2qx"
+s3_prefix = "spring-boot-dynamolambda"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

@@ -1,0 +1,210 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Prueba Técnica Daniel Cárdenas Luengo",
+        "description": "Ejemplo de Aplicación web desarrollada en Java bajo el framework Spring Boot, conectada a AWS DynamoDB y desplegada en AWS Lambda\n\n\nTecnologías utilizadas:\n- Java\n- Spring Boot\n- OpenApi + Swagger-ui\n- Github\n- AWS Serverless Application Model\n- AWS Lambda\n- AWS Api Gateway\n- AWS S3\n- AWS DynamoDB",
+        "contact": {
+            "name": "Daniel Cárdenas",
+            "email": "cardenasluengo@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "externalDocs": {
+        "description": "Github del Proyecto",
+        "url": "https://github.com/cardenasluengo/pruebaTecnicaEITS"
+    },
+    "servers": [{
+            "url": "https://03au4852i6.execute-api.us-east-1.amazonaws.com",
+            "description": "Generated server url"
+        }],
+    "paths": {
+        "/producto": {
+            "get": {
+                "tags": ["producto-controller"],
+                "operationId": "getAllProductos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Producto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["producto-controller"],
+                "operationId": "updateProducto",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Producto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "empty": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "additionalProperties": {
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["producto-controller"],
+                "operationId": "addProducto",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Producto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "empty": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "additionalProperties": {
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/producto/{idProducto}": {
+            "get": {
+                "tags": ["producto-controller"],
+                "operationId": "getProducto",
+                "parameters": [{
+                        "name": "idProducto",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Gson"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["producto-controller"],
+                "operationId": "deleteProducto",
+                "parameters": [{
+                        "name": "idProducto",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "empty": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "additionalProperties": {
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Producto": {
+                "required": ["categoria", "descripcion", "descuento", "marca", "modelo", "nombre", "precio"],
+                "type": "object",
+                "properties": {
+                    "idProducto": {
+                        "type": "string"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "type": "string"
+                    },
+                    "categoria": {
+                        "type": "string"
+                    },
+                    "marca": {
+                        "type": "string"
+                    },
+                    "modelo": {
+                        "type": "string"
+                    },
+                    "precio": {
+                        "maxLength": 2147483647,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "descuento": {
+                        "maxLength": 2147483647,
+                        "minLength": 0,
+                        "type": "string"
+                    }
+                }
+            },
+            "Gson": {
+                "type": "object"
+            }
+        }
+    }
+}
